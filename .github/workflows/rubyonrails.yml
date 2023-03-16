@@ -57,23 +57,4 @@ jobs:
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
 
-  Deploy:
-    runs-on: ubuntu-latest
-    steps:
-      name: "deploy"
-      run: |
-        cd /var/www/testable1
-        export RAILS_ENV=production
-        git pull origin main
-        bundle install
-        bundle exec rails db:migrate
-        killall -9 ruby
-        puma -d
-        sudo service nginx restart
-        # Add or replace any other lints here
-        - name: Security audit dependencies
-          run: bundle exec bundle-audit --update
-        - name: Security audit application code
-          run: bundle exec brakeman -q -w2
-        - name: Lint Ruby files
-          run: bundle exec rubocop --parallel
+        
