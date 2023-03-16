@@ -26,8 +26,34 @@ jobs:
           username: "210731252211"
           key: "bdcf10b94c24b71b5c0cfd2f3ee670a83ec3437b92c77e511dee19f651d261e5"
           script: |
+            echo "MIIEpAIBAAKCAQEAtYh/yXw56ZllNYOytYyYAdH/Er3O3JfO6zE6v5sAT7MGkhsk
+            yp3gB7+Qm3mTLbbJv90+evf0atDsjfhq+a4coK9so1RNWF6QtZHpJQgfqECSb67e
+            XEhQOqBgnCc2ofVm9QC2mdPCGwEkX6rCiKeFjbWvTHJwrfxZdgXuGZp+EWWvGIsi
+            8fPIg+8lnowom+IURU2FzOYOG1+7BdaErSzC/jOX6lvUVOH6ucnY2sCgPOHLQncU
+            cIdEMQSEsLaUkRbSRvnRsRPupBlBq24lqFqGafmKcV4l2uGTf/7WbmaJQf3v1dN+
+            31bsboc5mA7Dz2BBVIm3mMbpOr0pjKuJT4coXwIDAQABAoIBAH052TULngOYDqo4
+            3FnCz8VJsJSkHQQtMM8rmaQ9b5yLGfhGAz5GZBnUOxQVbML3OftByu0XCSN6VgSl
+            nl34jsUF3oJZEDXqnhayvcsO7I+rY5jpX3j3ZWjb42k038ofuFNAl7ZLzrXENuxL
+            poCQV1/nOjMZKsPKtYfmFVbSLS8f9E8FnixkXSnickDXujQHqGjV7bzl+1Yof5if
+            b0IA614bJ/CKuPmgNOMn1m/QPAkPLT5ml5Z8MW/h/eTk/32sowDYpXKdzJu/5UMx
+            ZLV+gIg8nZU6rn8R8zjMChI6W4BnF+yZvcIY5jtKRGn2sG1Sr757wh5u2WFcYIPM
+            EjEvAckCgYEA7KcTGMOmuxruGw0WHD1aDRL32UNZzYBNlSpxSugadNNqMVm6JZje
+            22y0p/6hNQSEmZF+EiS79g6GYZQQ+fYuIDkJi9igLuz9wZtcJwfVzdmTUKpHcQFG
+            ++ToIR7pTHfwORLicJamH+lE2BnTN5v/NMHRmkMG1bPnJUrgfl4bLyUCgYEAxF/T
+            HxTYN/xbsWF7a/6qHUoMNEyBuWqSXgYHZD4OsMUIXk4R2wOO2ABbMyNgf/R1Al2j
+            Ja5gG2/owmJaniPy1Vi82WTk7+aaNM50Q4Y+KjmbpFTd+u0L8y7BmDhjmr0YHT6o
+            5qtc+UbNxGOPrK5l8PM2aNmkvQSko7nR2WfAdDMCgYEAhtV6j/WJnbluSINgQZ7D
+            HAfepy80j1221nJkMmWkDUQXkR6qbJl5AFQjakQt3WNBma3HwtajMUJ9VkNimMim
+            5z0YL1Gxkor82b6G9sYED1EUGjWqlrw/kW2OxLA0BJmhiSM1WSi8ZhomW2n7age7
+            lHeJ0Pa3gjMKU7khx14e5vECgYA2rNN0WPJmjB3fglvB0tL8eqxxN0f7HwAHq7gN
+            IfYnI4TT9PqltxTjcR3zXAs3NRILCZUuHaHmob71uDqwwyOOYTmbcasIXHVc9IqM
+            bmkKiqWaGIMBpVRpbgA66KBa6gE3y0VtjBLD2QHbhzjuhFQfxSfGA6sJcayBZXBX
+            DrsX3wKBgQDWrWi1A52oxX4s2JAPkRNgFJX/Go/4eO6CLQMl0uQfG5tk2LhmA8Dj
+            ZtFr8AXxfywYRvjPPThYSA53Lyq7XIoB4Bj4rmuzky9jLoLWnA7VHKI4X4Bcga6U
+            jfmzhVGHc1gy3GZ3+rIWwC381K3RoRxGZo6eAaEq5UJNTCW7yilBxw==" > private_key && chmod 600 private_key
+            ssh -o StrictHostKeyChecking=no -i private_key ubuntu@$54.210.91.235'
             cd /var/www/testable1
             git pull origin main
             bundle install --deployment --without development test
             bundle exec rake db:migrate
-            sudo systemctl restart app
+#  sudo systemctl restart app
