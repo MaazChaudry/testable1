@@ -90,3 +90,16 @@ jobs:
           run: bundle exec brakeman -q -w2
         - name: Lint Ruby files
           run: bundle exec rubocop --parallel
+
+  Keys:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: einaregilsson/beanstalk-deploy@v11
+        with:
+          aws_access_key: "28KOWTq5yCFyEEXZsC9X8lnszc5MpUjOIUsHRQXI"
+          aws_secret_key: "AKIA2SSTC2PGOY42JOUB"
+          application_name: testable
+          environment_name: production
+          version_label: 2
+          region: us-east-1
