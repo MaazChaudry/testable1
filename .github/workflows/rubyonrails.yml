@@ -57,7 +57,7 @@ jobs:
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
 
-  Deploy:
+  deploy:
     runs-on: self-hosted
     steps:
       - name: Deploy in EC2
@@ -67,8 +67,5 @@ jobs:
           git pull origin main
           bundle exec rake db:create
           bundle exec rake db:migrate
-          bundle exec bundle-audit --update
-          bundle exec brakeman -q -w2
-          bundle exec rubocop --parallel
           killall -9 ruby
           puma -d
