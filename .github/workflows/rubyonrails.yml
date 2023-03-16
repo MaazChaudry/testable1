@@ -39,9 +39,13 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
-      - run:
-          name: Deploy
-          command: |
+
+
+    deploy:
+      runs-on: self-hosted
+      steps:
+        - name: Deploy in EC2
+          run: |
             cd /var/www/testable1
             export RAILS_ENV=production
             git pull origin main
@@ -50,6 +54,18 @@ jobs:
             killall -9 ruby
             puma -d
             sudo service nginx restart
+
+  #        - name: Deploy
+  #      run: |
+  #        command: |
+  #          cd /var/www/testable1
+  #          export RAILS_ENV=production
+  #          git pull origin main
+  #          bundle install
+  #          bundle exec rails db:migrate
+  #          killall -9 ruby
+  #          puma -d
+  #          sudo service nginx restart
 
   lint:
     runs-on: ubuntu-latest
@@ -67,16 +83,3 @@ jobs:
         run: bundle exec brakeman -q -w2
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
-
-#  deploy:
-#    runs-on: self-hosted
-#    steps:
-#      - name: Deploy in EC2
-#        run: |
-#          cd /var/www/testable1
-#          export RAILS_ENV=production
-#          git pull origin main
-#          bundle exec rake db:create
-#          bundle exec rake db:migrate
-#          killall -9 ruby
-#          puma -d
