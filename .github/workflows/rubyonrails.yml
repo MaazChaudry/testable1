@@ -57,19 +57,6 @@ jobs:
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
 
-
-      - name: deploy to aws
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
-        with:
-          aws_access_key: "28KOWTq5yCFyEEXZsC9X8lnszc5MpUjOIUsHRQXI"
-          aws_secret_key: "AKIA2SSTC2PGOY42JOUB"
-          application_name: testable
-          environment_name: production
-          version_label: 2
-          region: us-east-1
-
   Deploy:
     runs-on: ubuntu-latest
     steps:
