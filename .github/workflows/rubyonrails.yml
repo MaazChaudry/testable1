@@ -40,29 +40,6 @@ jobs:
       - name: Run tests
         run: bin/rake
 
-      - name: Deploy in EC2
-        run: |
-            cd /var/www/testable1
-            export RAILS_ENV=production
-            git pull origin main
-            bundle install
-            bundle exec rails db:migrate
-            killall -9 ruby
-            puma -d
-            sudo service nginx restart
-
-  #        - name: Deploy
-  #      run: |
-  #        command: |
-  #          cd /var/www/testable1
-  #          export RAILS_ENV=production
-  #          git pull origin main
-  #          bundle install
-  #          bundle exec rails db:migrate
-  #          killall -9 ruby
-  #          puma -d
-  #          sudo service nginx restart
-
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -72,6 +49,39 @@ jobs:
         uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
         with:
           bundler-cache: true
+      # Add or replace any other lints here
+      - name: Security audit dependencies
+        run: bundle exec bundle-audit --update
+      - name: Security audit application code
+        run: bundle exec brakeman -q -w2
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel
+
+
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy to aws
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
+        with:
+          aws_access_key: "28KOWTq5yCFyEEXZsC9X8lnszc5MpUjOIUsHRQXI"
+          aws_secret_key: "AKIA2SSTC2PGOY42JOUB"
+          application_name: testable
+          environment_name: production
+          version_label: 2
+          region: us-east-1
+      - name:
+          cd /var/www/testable1
+          export RAILS_ENV=production
+          git pull origin main
+          bundle install
+          bundle exec rails db:migrate
+          killall -9 ruby
+          puma -d
+          sudo service nginx restart
+
       # Add or replace any other lints here
       - name: Security audit dependencies
         run: bundle exec bundle-audit --update
