@@ -16,5 +16,4 @@ class PostTest < ActiveSupport::TestCase
     post = Post.new(title: 'Test')
     assert post.save, 'Idk words go here'
   end
-  
 end
