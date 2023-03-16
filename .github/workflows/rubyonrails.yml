@@ -56,3 +56,19 @@ jobs:
         run: bundle exec brakeman -q -w2
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
+
+  Deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy in EC2
+        run: |
+          cd /var/www/testable
+          export RAILS_ENV=production
+          git pull origin main
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+          bundle exec bundle-audit --update
+          bundle exec brakeman -q -w2
+          bundle exec rubocop --parallel
+          killall -9 ruby
+          puma -d
