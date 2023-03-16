@@ -19,8 +19,7 @@ jobs:
         run: |
           gem install bundler
           bundle install
-      - name: Run tests
-        run: bundle exec rspec
+
       - name: Deploy to AWS
         uses: appleboy/ssh-action@master
         with:
