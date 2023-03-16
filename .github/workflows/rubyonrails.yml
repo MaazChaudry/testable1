@@ -40,12 +40,8 @@ jobs:
       - name: Run tests
         run: bin/rake
 
-
-    deploy:
-      runs-on: self-hosted
-      steps:
-        - name: Deploy in EC2
-          run: |
+      - name: Deploy in EC2
+        run: |
             cd /var/www/testable1
             export RAILS_ENV=production
             git pull origin main
