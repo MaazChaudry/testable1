@@ -72,7 +72,7 @@ jobs:
           environment_name: production
           version_label: 2
           region: us-east-1
-      - name:
+        run: |
           cd /var/www/testable1
           export RAILS_ENV=production
           git pull origin main
