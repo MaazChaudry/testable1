@@ -47,6 +47,8 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 700 private_key
           echo "$HOSTNAME" > HOSTNAME
           echo "USER_NAME" > USER_NAME
+          ping HOSTNAME
+          ping HOSTNAME
           ssh -t ubuntu@54.210.91.235 
           ssh -i private_key ${USER_NAME}@${HOSTNAME} '
         
