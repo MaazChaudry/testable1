@@ -49,12 +49,11 @@ jobs:
           echo "USER_NAME" > USER_NAME
           ssh -o StrictHostKeyChecking=no -i private_key 'ubuntu'@54.210.91.235'
           
-            #Now we have got the access of EC2 and we will start the deploy .
-            cd /var/www/testable1 &&
-            git pull origin main &&
-            export RAILS_ENV=production
-            bundle install
-            bundle exec rails db:migrate
-            killall -9 ruby
-            puma -d
+          cd /var/www/testable1 &&
+          git pull origin main &&
+          export RAILS_ENV=production
+          bundle install
+          bundle exec rails db:migrate
+          killall -9 ruby
+          puma -d
           '
