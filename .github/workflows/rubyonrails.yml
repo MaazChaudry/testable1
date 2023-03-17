@@ -44,14 +44,15 @@ jobs:
 
 
         run: |
-          echo "$PRIVATE_KEY" > private_key &&
-          ssh -i private_key ${USER_NAME}@${HOSTNAME} '
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           
             #Now we have got the access of EC2 and we will start the deploy .
             cd /var/www/testable1 &&
-            git checkout master &&
-            git fetch --all &&
-            git reset --hard origin/master &&
-            git pull origin master &&
-            docker-compose -f docker-compose.prod.yml up -d --build 
+            git pull origin main &&
+            export RAILS_ENV=production
+            bundle install
+            bundle exec rails db:migrate
+            killall -9 ruby
+            puma -d
           '
