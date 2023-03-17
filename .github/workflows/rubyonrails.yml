@@ -47,7 +47,7 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 700 private_key
           echo "$HOSTNAME" > HOSTNAME
           echo "USER_NAME" > USER_NAME
-          ssh -o StrictHostKeyChecking=no -i private_key 'ubuntu'@54.210.91.235'
+          ssh -i private_key 'ubuntu'@54.210.91.235'
           
           cd /var/www/testable1 &&
           git pull origin main &&
