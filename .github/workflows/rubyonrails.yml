@@ -52,11 +52,7 @@ jobs:
           export RAILS_ENV=production &&
           killall -9 ruby &&
           puma
+          sudo service nginx restart
           '
-          run: |
-            while read -r cmd
-                do
-                  eval sudo $cmd
-                done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
 
   
