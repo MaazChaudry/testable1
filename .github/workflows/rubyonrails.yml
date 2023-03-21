@@ -54,3 +54,4 @@ jobs:
           puma -d
           '
       - name: Deployed compelted
+      - run: echo "compelete"
