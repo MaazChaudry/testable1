@@ -53,5 +53,6 @@ jobs:
           killall -9 ruby &&
           puma -d
           '
-      - name: Deployed compelted
-      - run: echo "compelete"
+          echo "compelete"
+
+  
