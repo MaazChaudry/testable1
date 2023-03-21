@@ -53,3 +53,4 @@ jobs:
           killall -9 ruby &&
           puma -d
           '
+      - name: Deployed compelted
