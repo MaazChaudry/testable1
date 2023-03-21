@@ -53,6 +53,6 @@ jobs:
           killall -9 ruby &&
           puma
           '
-          echo "compelete"
+          echo $?
 
   
