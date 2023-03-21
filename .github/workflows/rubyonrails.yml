@@ -32,4 +32,4 @@ jobs:
         run: |
           
           echo "$PRIVATE_KEY" > private_key && chmod 400 private_key &&
-          ssh -i private_key ${USER_NAME}@${HOSTNAME} "cd /home/ubuntu/APP_NAME && git pull && bundle install --jobs 4 --retry 3 --deployment --without development test && bundle exec rake assets:precompile RAILS_ENV=production && sudo systemctl restart APP_NAME"
+          ssh -i private_key ${USER_NAME}@${HOSTNAME} "cd /home/ubuntu/var/www/testable1 && git pull && bundle install --jobs 4 --retry 3 --deployment --without development test && bundle exec rake assets:precompile RAILS_ENV=production && sudo systemctl restart"
