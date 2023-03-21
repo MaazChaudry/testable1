@@ -51,7 +51,7 @@ jobs:
           git pull origin main &&
           export RAILS_ENV=production &&
           killall -9 ruby &&
-          puma -d
+          puma
           '
           echo "compelete"
 
