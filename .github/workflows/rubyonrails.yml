@@ -42,7 +42,7 @@ jobs:
           HOSTNAME: ${{ secrets.HOSTNAME  }}
           USER_NAME: ${{ secrets.USER_NAME  }}
 
-      - run: mkdir -p ~/.ssh/
-      - run: echo "${{ secrets.PRIVATE_KEY  }}" > ~/.ssh/private.key
-      - run: chmod 400 ~/.ssh/private.key
-      - run: ssh -i ~/.ssh/private.key -o "StrictHostKeyChecking no" ${{ secrets.USER_NAME  }}@$${{ secrets.HOSTNAME  }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 400 private_key &&
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 'cd /var/www/testable1 && git pull && bundle install --jobs 4 --retry 3 --deployment --without development test && bundle exec rake assets:precompile RAILS_ENV=production && killall -9 ruby && puma -d'
